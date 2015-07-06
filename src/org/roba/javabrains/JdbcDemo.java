@@ -19,7 +19,18 @@ public class JdbcDemo {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// Space for some code
+	}
+
+	/**
+	 * @throws BeansException
+	 */
+	private static void testingNamedParameterJdbcTemplate()
+			throws BeansException {
+		ApplicationContext context = new ClassPathXmlApplicationContext(
+				"spring.xml");
+		JdbcDaoImpl dao = context.getBean("jdbcDaoImpl", JdbcDaoImpl.class);
+		dao.insertCircleNamed(new Circle(3, "Third circle"));
+		System.out.println(dao.getAllCircles().size());
 	}
 
 	/**
@@ -81,6 +92,7 @@ public class JdbcDemo {
 		testingJdbcTempalte();
 		testingRowMapper();
 		testingWriteOperations();
+		testingNamedParameterJdbcTemplate();
 	}
 
 	/**
