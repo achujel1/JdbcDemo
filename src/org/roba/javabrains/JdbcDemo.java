@@ -20,6 +20,31 @@ public class JdbcDemo {
 	 */
 	public static void main(String[] args) {
 
+		// Space for some code
+
+	}
+
+	/**
+	 * Here I'm testing RowMapper in Spring
+	 * 
+	 * @throws BeansException
+	 */
+	private static void testingRowMapper() throws BeansException {
+		ApplicationContext context = new ClassPathXmlApplicationContext(
+				"spring.xml");
+		JdbcDaoImpl dao = context.getBean("jdbcDaoImpl", JdbcDaoImpl.class);
+
+		// Getting name of the given circle object id
+		System.out.println(dao.getCircleName(1));
+
+		// Getting the address of given circle object
+		System.out.println(dao.getCircleForId(1));
+
+		// Getting the name of given circle object
+		System.out.println(dao.getCircleForId(1).getName());
+
+		// Getting the size of all circle objects in table
+		System.out.println(dao.getAllCircles().size());
 	}
 
 	/**
@@ -42,6 +67,7 @@ public class JdbcDemo {
 	private static void testedMethods() throws BeansException {
 		testeingJdbcInSpring();
 		testingJdbcTempalte();
+		testingRowMapper();
 	}
 
 	/**
