@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 
 import org.roba.javabrains.model.Circle;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 /**
@@ -19,8 +20,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class JdbcDaoImpl {
-	@Autowired
 	private DataSource dataSource;
+	private JdbcTemplate jdbcTemplate = new JdbcTemplate();
 
 	/**
 	 * Getting circle values from database
@@ -55,11 +56,30 @@ public class JdbcDaoImpl {
 		}
 	}
 
+	/**
+	 * Getting the count of object in circle table. Using JdbcTemplate
+	 * 
+	 * @return
+	 */
+	public int getCircleCount() {
+		String sql = "SELECT COUNT(*) from circle";
+		return jdbcTemplate.queryForObject(sql, Integer.class);
+	}
+
 	public DataSource getDataSource() {
 		return dataSource;
 	}
 
+	@Autowired
 	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
+	}
+
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
 	}
 }

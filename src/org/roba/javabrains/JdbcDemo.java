@@ -20,8 +20,18 @@ public class JdbcDemo {
 	 */
 	public static void main(String[] args) {
 
-		// Space for some code
+	}
 
+	/**
+	 * Here I'm testing how Jdbc template is working
+	 * 
+	 * @throws BeansException
+	 */
+	private static void testingJdbcTempalte() throws BeansException {
+		ApplicationContext context = new ClassPathXmlApplicationContext(
+				"spring.xml");
+		JdbcDaoImpl dao = context.getBean("jdbcDaoImpl", JdbcDaoImpl.class);
+		System.out.println(dao.getCircleCount());
 	}
 
 	/**
@@ -31,6 +41,7 @@ public class JdbcDemo {
 	 */
 	private static void testedMethods() throws BeansException {
 		testeingJdbcInSpring();
+		testingJdbcTempalte();
 	}
 
 	/**
