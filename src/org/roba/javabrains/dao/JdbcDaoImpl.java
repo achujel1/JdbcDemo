@@ -102,6 +102,25 @@ public class JdbcDaoImpl {
 	}
 
 	/**
+	 * Method which is writing values to circle table
+	 * 
+	 * @param circle
+	 */
+	public void insertCircle(Circle circle) {
+		String sql = "INSERT INTO CIRCLE (ID, NAME) VALUES (?, ?)";
+		jdbcTemplate.update(sql,
+				new Object[] { circle.getId(), circle.getName() });
+	}
+
+	/**
+	 * Method which is creating Triangle table in database
+	 */
+	public void createTriangleTable() {
+		String sql = "CREATE TABLE TRIANGLE (ID INTEGER, NAME VARCHAR(50))";
+		jdbcTemplate.execute(sql);
+	}
+
+	/**
 	 * Method to get the RowMapper values of Circle objects
 	 * 
 	 * @author Adminas
