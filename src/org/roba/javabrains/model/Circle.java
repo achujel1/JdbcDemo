@@ -1,5 +1,11 @@
 package org.roba.javabrains.model;
 
+/**
+ * Main object with which we are working in this JDBC demo project
+ * 
+ * @author Adminas
+ *
+ */
 public class Circle {
 	private int id;
 	private String name;
