@@ -1,6 +1,7 @@
 package org.roba.javabrains;
 
 import org.roba.javabrains.dao.JdbcDaoImpl;
+import org.roba.javabrains.dao.SimpleJdbcDaoImpl;
 import org.roba.javabrains.model.Circle;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -19,9 +20,27 @@ public class JdbcDemo {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+
+		// Place for some code
+
 	}
 
 	/**
+	 * Method which is using super DAO classes
+	 * 
+	 * @throws BeansException
+	 */
+	private static void testingDaoSuperClasses() throws BeansException {
+		ApplicationContext context = new ClassPathXmlApplicationContext(
+				"spring.xml");
+		SimpleJdbcDaoImpl dao = context.getBean("simpleJdbcDaoImpl",
+				SimpleJdbcDaoImpl.class);
+		System.out.println(dao.getCircleCount());
+	}
+
+	/**
+	 * Method which is working with named parameters
+	 * 
 	 * @throws BeansException
 	 */
 	private static void testingNamedParameterJdbcTemplate()
@@ -93,6 +112,7 @@ public class JdbcDemo {
 		testingRowMapper();
 		testingWriteOperations();
 		testingNamedParameterJdbcTemplate();
+		testingDaoSuperClasses();
 	}
 
 	/**

@@ -15,6 +15,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 /**
@@ -29,6 +30,7 @@ public class JdbcDaoImpl {
 	private JdbcTemplate jdbcTemplate = new JdbcTemplate();
 	// Testing named jdbc template parameter
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	private SimpleJdbcTemplate simpleJdbcTemplate;
 
 	/**
 	 * Getting circle values from database
@@ -170,5 +172,13 @@ public class JdbcDaoImpl {
 
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
+	}
+
+	public SimpleJdbcTemplate getSimpleJdbcTemplate() {
+		return simpleJdbcTemplate;
+	}
+
+	public void setSimpleJdbcTemplate(SimpleJdbcTemplate simpleJdbcTemplate) {
+		this.simpleJdbcTemplate = simpleJdbcTemplate;
 	}
 }
